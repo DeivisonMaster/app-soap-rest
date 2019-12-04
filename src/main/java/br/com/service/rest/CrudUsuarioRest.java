@@ -18,15 +18,10 @@ import javax.ws.rs.core.Response;
 
 @Path("/usuario")  // caminho pelo qual o serviço REST irá responder
 public class CrudUsuarioRest {
+	Map<Integer, Usuario> usuarios = new HashMap<>();
 	
-	@Path("buscaUsuario/{id}")
-	@GET // select
-	@Produces(MediaType.APPLICATION_JSON)  // tipo de dado de retorno
-	public Usuario getUser(@PathParam("id") Integer id) {
-		// simulando busca por usuário
-		
-		Map<Integer, Usuario> usuarios = new HashMap<>();
-		
+	
+	public CrudUsuarioRest() {
 		Usuario usuario1 = new Usuario();
 		usuario1.setNome("Deivison");
 		usuario1.setCpf("111.222.333-22");
@@ -50,21 +45,33 @@ public class CrudUsuarioRest {
 		usuarios.put(1, usuario1);
 		usuarios.put(2, usuario2);
 		usuarios.put(3, usuario3);
+	}
+	
+	@Path("buscaUsuario")
+	@GET // select
+	@Produces(MediaType.APPLICATION_JSON)  // tipo de dado de retorno
+	public Map<Integer, Usuario> getAllUsers() {
+		// simulando busca por usuário
 		
+		//return Response.status(200).entity(usuario).build();
+		return this.usuarios;
+	}
+	
+	
+	@GET
+	@Path("buscaPorId/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Usuario getById(@PathParam("id") Integer id) {
 		Usuario usuario = usuarios.get(id);
 		
 		if(usuario != null) {
 			return usuario;
 		}
 		
-		//return Response.status(200).entity(usuario).build();
 		return usuario;
 	}
 	
-	
 	@POST  // insert
-	@Consumes("application/json")
-	@Produces("application/json")
 	public Response createUser(Usuario usuario) {
 		// simula iserção no banco
 		
@@ -72,10 +79,8 @@ public class CrudUsuarioRest {
 		return Response.status(200).entity(usuario).build();
 	}
 	
-	@Path("/")
+	@Path("atualizaUsuario/{id}")
 	@PUT  // update
-	@Consumes("application/json")
-	@Produces("application/json")
 	public Response updateUser(@PathParam("id") String id, Usuario usuario) {
 		// simula update em um registro no banco
 
@@ -83,13 +88,19 @@ public class CrudUsuarioRest {
 		return Response.status(200).entity(usuario).build();
 	}
 	
-	@Path("/")
 	@DELETE  // delete
-	public Response deleteUser(@PathParam("id") String id) {
+	@Path("excluiUsuario/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<Integer, Usuario> deleteUser(@PathParam("id") Integer id) {
 		// simula exclusão de registro
 		
-		System.out.println("Excluindo registro de usuário " + id);
-		return Response.status(200).build();
+		Usuario usuario = this.usuarios.get(id);
+		if(usuario != null) {
+			this.usuarios.remove(id);
+		}
+		
+		//return Response.status(200).build();
+		return this.usuarios;
 	}
 	
 }

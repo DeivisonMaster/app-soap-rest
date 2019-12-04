@@ -29,7 +29,7 @@ public class CEPRestWS {
 		cep.setCep(cepParam);
 		cep.setBairro("Bairro " + new Random().nextInt());
 		cep.setNumero(new Random().nextInt());
-		cep.setRua("Rua que sempre " + new Random().nextInt());
+		cep.setRua("Rua das Oliveiras " + new Random().nextInt());
 		cep.setUf("PR");
 		
 		return cep;

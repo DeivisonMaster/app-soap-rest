@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Consultando CEP</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+	
+		function procuraMeuCep(){
+			var consultaCep 	= $('#meuCep').val();
+
+			var cep		= $('#cep');
+			var rua 	= $('#rua');
+			var numero 	= $('#numero');
+			var bairro 	= $('#bairro');
+			var uf 		= $('#uf');
+
+			if(consultaCep != null && consultaCep != ""){
+				$.ajax("http://172.17.204.6:8080/soap-rest/rest/ceprest/buscaCEP/" + consultaCep)
+				.done(function(data){
+					cep.html(data.cep);
+					rua.html(data.rua);
+					numero.html(data.numero);
+					bairro.html(data.bairro);
+					uf.html(data.uf);
+					
+				})
+				.fail(function(){
+					alert('erro ao processar requisição');
+				})
+				.always(function (){
+					alert('requisição completada');
+				});
+			}
+			
+		}
+		
+		$(document).ready(function(){
+			procuraMeuCep();
+		});
+		
+	</script>
+</head>
+<body>
+
+	<form>
+		<input type="text" id="meuCep"/>
+		<input type="button" value="busca Cep" onclick="procuraMeuCep();"/>
+		
+		<br/><br/>
+		
+		<table border="1">
+			<tr>
+				<td>CEP</td>
+				<td>
+					<span id="cep"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Rua</td>
+				<td>
+					<span id="rua"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Número</td>
+				<td>
+					<span id="numero"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Bairro</td>
+				<td>
+					<span id="bairro"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>UF</td>
+				<td>
+					<span id="uf"></span>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
