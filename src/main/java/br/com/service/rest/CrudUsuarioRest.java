@@ -72,6 +72,8 @@ public class CrudUsuarioRest {
 	}
 	
 	@POST  // insert
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response createUser(Usuario usuario) {
 		// simula iserção no banco
 		
@@ -81,6 +83,8 @@ public class CrudUsuarioRest {
 	
 	@Path("atualizaUsuario/{id}")
 	@PUT  // update
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateUser(@PathParam("id") String id, Usuario usuario) {
 		// simula update em um registro no banco
 
