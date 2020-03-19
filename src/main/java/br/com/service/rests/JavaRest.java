@@ -1,4 +1,4 @@
-package br.com.service.rest;
+package br.com.service.rests;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/rest")
 public class JavaRest {
 	
+	@Path("exemplo")
 	@GET
 	@Produces("text/html")
 	public String exemplo() {

@@ -1,0 +1,18 @@
+ENDPOINTS HTTP
+
+
+@POST
+http://172.17.204.8:8082/soap-rest/rest/usuario/cadastraUsuario
+
+@GET
+http://172.17.204.8:8082/soap-rest/rest/usuario/buscaUsuario
+http://172.17.204.8:8082/soap-rest/rest/usuario/buscaPorId/id
+http://172.17.204.8:8082/soap-rest/rest/usuario/buscaPorNome/nome
+
+
+@PUT
+http://172.17.204.8:8082/soap-rest/rest/usuario/atualizaUsuario/id
+
+
+@DELETE
+http://172.17.204.8:8082/soap-rest/rest/usuario/deleteUsuario/id

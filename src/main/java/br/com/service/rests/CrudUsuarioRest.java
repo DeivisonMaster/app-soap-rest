@@ -1,4 +1,4 @@
-package br.com.service.rest;
+package br.com.service.rests;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,10 +18,16 @@ import javax.ws.rs.core.Response;
 
 @Path("/usuario")  // caminho pelo qual o serviço REST irá responder
 public class CrudUsuarioRest {
-	Map<Integer, Usuario> usuarios = new HashMap<>();
+	private static int contador = 3;
+	private Map<Integer, Usuario> usuarios = new HashMap<>();
+	private Map<String, Usuario> usuariosNome = new HashMap<>();
 	
 	
 	public CrudUsuarioRest() {
+		
+	}
+	
+	public void cadastraUsuarios() {
 		Usuario usuario1 = new Usuario();
 		usuario1.setNome("Deivison");
 		usuario1.setCpf("111.222.333-22");
@@ -47,11 +53,14 @@ public class CrudUsuarioRest {
 		usuarios.put(3, usuario3);
 	}
 	
+	
 	@Path("buscaUsuario")
 	@GET // select
 	@Produces(MediaType.APPLICATION_JSON)  // tipo de dado de retorno
 	public Map<Integer, Usuario> getAllUsers() {
 		// simulando busca por usuário
+		
+		cadastraUsuarios();
 		
 		//return Response.status(200).entity(usuario).build();
 		return this.usuarios;
@@ -71,14 +80,33 @@ public class CrudUsuarioRest {
 		return usuario;
 	}
 	
-	@POST  // insert
-	@Consumes(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("buscaPorNome/{nome}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createUser(Usuario usuario) {
+	public Usuario getByName(@PathParam("nome") String nome) {
+		Usuario user = new Usuario();
+		
+		user.setNome("Marcos");
+		user.setCpf("222.111.555.33");
+		user.setIdade(28);
+		
+		usuariosNome.put("nome1", user);
+		Usuario usuario = usuariosNome.get(nome);
+		
+		return usuario; 
+	}
+	
+	@POST  // insert
+	@Path("cadastraUsuario")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
+	public Map<Integer, Usuario> createUser(Usuario usuario) {
 		// simula iserção no banco
 		
+		this.usuarios.put(++contador, usuario);
+		
 		System.out.println("Criando usuário");
-		return Response.status(200).entity(usuario).build();
+		return this.usuarios;
 	}
 	
 	@Path("atualizaUsuario/{id}")

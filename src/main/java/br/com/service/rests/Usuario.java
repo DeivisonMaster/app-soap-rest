@@ -1,4 +1,4 @@
-package br.com.service.rest;
+package br.com.service.rests;
 
 import java.util.ArrayList;
 import java.util.List;
