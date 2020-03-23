@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banda>
+    <nome>Led Zeppelin<nome>
+    <album>
+        <nome>Led Zeppelin</nome>
+        <ano>1969</ano>
+        <musicas>
+            <musica>
+                <nome>Good Times Bad Times</nome>
+            </musica>
+            <musica>
+                <nome>You Shook Me</nome>
+            </musica>
+        </musicas>
+    </album>
+</banda>

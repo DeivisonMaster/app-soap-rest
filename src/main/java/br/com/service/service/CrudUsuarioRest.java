@@ -1,4 +1,4 @@
-package br.com.service.rests;
+package br.com.service.service;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,6 +15,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import br.com.service.rest.modelo.Usuario;
 
 @Path("/usuario")  // caminho pelo qual o serviço REST irá responder
 public class CrudUsuarioRest {

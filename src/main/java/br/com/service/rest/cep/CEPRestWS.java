@@ -10,11 +10,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
+import br.com.service.rest.modelo.CEP;
+
 @Path("/ceprest")
 public class CEPRestWS {
-	
-//	@Context
-//	private UriInfo context;
 	
 	public CEPRestWS() {
 	}

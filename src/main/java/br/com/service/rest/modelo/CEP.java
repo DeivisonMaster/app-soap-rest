@@ -1,4 +1,4 @@
-package br.com.service.rest.cep;
+package br.com.service.rest.modelo;
 
 import java.io.Serializable;
 

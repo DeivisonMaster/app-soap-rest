@@ -1,4 +1,4 @@
-package br.com.service.rests;
+package br.com.service.rest.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
